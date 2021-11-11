@@ -16,10 +16,10 @@ class Data {
   double binLow(int i) const { return m_bins[i]; }
   double binHigh(int i) const { return m_bins[i+1]; }
   double error(int i) const { return m_errors[i];  }
-  
+
   int check(const Data& in, int n) const;
   Data operator+(const Data& in) const;
-  
+
   //get&set
   std::string getName() const { return name;  }
   std::vector<double> getBins() const {return m_bins;}
@@ -27,6 +27,7 @@ class Data {
  private:
   Data() {}  // disallow empty data set
   void assertSizes();
+  double background(double x,double alpha=0.005,double beta=-0.00001, double gamma=0.08, double delta=0.015) const;
   std::vector<double> m_data;
   std::vector<double> m_bins;
   std::vector<double> m_errors;

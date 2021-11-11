@@ -11,7 +11,7 @@ using namespace std;
 Data::Data(std::vector<double> m_data,std::vector<double> m_bins,std::vector<double> m_errors) :
 	m_data(m_data),m_bins(m_bins),m_errors(m_errors)
 {
-	
+
 
 }
 
@@ -47,9 +47,9 @@ Data::Data(const std::string& filename) {
     file >> errors;
     m_errors.push_back(errors);
   }
-  
 
-  
+
+
   // done! close the file
   file.close();
 
@@ -67,14 +67,18 @@ int Data::check(const Data& in, int n) const{
   		double sigdeltasig=sqrt(error(k)*error(k)+in.error(k)*in.error(k));
   		if (deltasig>n*sigdeltasig)
   		{
-  			difbin+=1;	
+  			difbin+=1;
   		}
 	}
 	return difbin;
 }
+double Data::background(double x,double alpha,double beta, double gamma, double delta) const
+{
+	return alpha+beta*x+gamma*exp(-delta*x);
+}
 
 Data Data::operator+(const Data& in) const
-{	
+{
 	vector<double> new_data;
 	vector<double> new_bins;
 	vector<double> new_errors;
@@ -86,7 +90,7 @@ Data Data::operator+(const Data& in) const
 		double omega2=1/(pow(in.error(k),2));
 		new_data.push_back((omega1*measurement(k)+omega2*in.measurement(k))/(omega1+omega2));
 		new_errors.push_back(sqrt(1/(omega1+omega2)));
-		
+
 	}
 	Data outputData(new_data,getBins(),new_errors);
 	return outputData;
@@ -96,6 +100,5 @@ Data Data::operator+(const Data& in) const
 	cout<< "not compatible in 2 sigma" << endl;
 	return Data({},{},{});
 	}
-	
-}
 
+}
