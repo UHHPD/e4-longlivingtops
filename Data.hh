@@ -19,6 +19,7 @@ class Data {
 
   int check(const Data& in, int n) const;
   Data operator+(const Data& in) const;
+  double calcchipdof() const;
 
   //get&set
   std::string getName() const { return name;  }

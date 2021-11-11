@@ -105,16 +105,16 @@ int main() {
   		double sigdeltasig=sqrt(all.at(j).error(k)*all.at(j).error(k)+all.at(i).error(k)*all.at(i).error(k));
   		if (deltasig<=n*sigdeltasig)
   		{
-  			cout << tostr(i)<<":"<< tostr(j)<<  " Smoll"<< endl;	
+  			cout << tostr(i)<<":"<< tostr(j)<<  " Smoll"<< endl;
   		}
   		else
   		{
-  			cout << tostr(i)<<":"<< tostr(j)<<  " big"<< endl;	
+  			cout << tostr(i)<<":"<< tostr(j)<<  " big"<< endl;
   		}
   	}
-  	
+
   }
-   // 1d_2 
+   // 1d_2
   n=1;
   for (int i=0; i<4; i++)
   {
@@ -123,18 +123,23 @@ int main() {
   		int difbin=all.at(i).check(all.at(j),n);
   		cout<< "n="<< n<< "   Messung " << tostr(i)<<":"<< tostr(j)<< "   =   " << difbin << endl;
   	}
-  	
-  	
+
+
   }
- 	
- 	
+
+
  //Data datAll("exp_A");
- 
- Data sumAB = datA + datB;
+
+ Data sum = datA+datB+datB+datC;
+ for (int i=0; i<4; i++)
+ {
+   std::cout<<" Messung" << tostr(i) << "  Chi²/dof:   " << all.at(i).calcchipdof() << '\n';
+ }
+ std::cout<<" Messung Combined"  << "  Chi²/dof:   " << sum.calcchipdof() << '\n';
  //datAll.add(datB);
  //datAll.add(datC);
  //datAll.add(datD);
-  
+
 
   return 0;
 }

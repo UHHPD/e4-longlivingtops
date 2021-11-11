@@ -76,6 +76,15 @@ double Data::background(double x,double alpha,double beta, double gamma, double 
 {
 	return alpha+beta*x+gamma*exp(-delta*x);
 }
+double Data::calcchipdof() const
+{
+	double chi=0;
+	for (int i=0; i<size();i++)
+	{
+		chi+=pow(measurement(i)-background(binCenter(i)),2)/(pow(error(i),2));
+	}
+	return (chi/(size()-4));
+}
 
 Data Data::operator+(const Data& in) const
 {
