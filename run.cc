@@ -130,7 +130,7 @@ int main() {
 
  //Data datAll("exp_A");
 
- Data sum = datA+datB+datB+datC;
+ Data sum = datA+datB+datC+datD;
  for (int i=0; i<4; i++)
  {
    std::cout<<" Messung" << tostr(i) << "  Chi²/dof:   " << all.at(i).calcchipdof() << '\n';
@@ -139,7 +139,6 @@ int main() {
  //datAll.add(datB);
  //datAll.add(datC);
  //datAll.add(datD);
- std::cout<<" Messung Combined"  << "  Chi²/dof:   " << 1.49072 << '\n';
 
   return 0;
 }
