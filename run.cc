@@ -135,7 +135,7 @@ int main() {
  {
    std::cout<<" Messung" << tostr(i) << "  Chi²/dof:   " << all.at(i).calcchipdof() << '\n';
  }
- std::cout<<" Experiment Combined"  << "  Chi²/dof:   " << sum.calcchipdof() << '\n';
+ std::cout<<" Messung Combined"  << "  Chi²/dof:   " << sum.calcchipdof() << '\n';
 
   return 0;
 }
