@@ -85,6 +85,32 @@ double Data::calcchipdof() const
 	}
 	return (chi/(size()-4));
 }
+void Data::print(std::string filename) const
+{
+	ofstream out(filename);
+	for (int i=0; i<size();i++)
+	{
+		out << binCenter(i)<< "\t" << measurement(i)<< "\t"<< error(i)<< endl;
+	}
+	out.close();
+
+}
+
+int Data::deviationModel(int n) const
+{
+	int deviation=0;
+	std::cout << "\n############################" << '\n';
+	std::cout << "Messung "<< getName().at(4) << '\n';
+	for (int i=0; i<size();i++)
+	{
+		if (abs(measurement(i)-background(binCenter(i)))>n*error(i))
+		{
+			std::cout << "x=" << i << "\t";
+			deviation+=1;
+		}
+	}
+	return deviation;
+}
 
 Data Data::operator+(const Data& in) const
 {

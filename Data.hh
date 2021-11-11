@@ -16,10 +16,12 @@ class Data {
   double binLow(int i) const { return m_bins[i]; }
   double binHigh(int i) const { return m_bins[i+1]; }
   double error(int i) const { return m_errors[i];  }
+  void print(std::string filename) const;
 
   int check(const Data& in, int n) const;
   Data operator+(const Data& in) const;
   double calcchipdof() const;
+  int deviationModel(int n) const;
 
   //get&set
   std::string getName() const { return name;  }

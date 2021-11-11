@@ -129,7 +129,26 @@ int main() {
 
 
  //Data datAll("exp_A");
+//exp 2. a
+n=2;
+for (int i=0; i<4; i++)
+{
+  int divs=all.at(i).deviationModel(n);
+  std::cout<< "\nn="<< n<<" Messung " << tostr(i) << ":   " <<  divs << '\n';
+  std::cout << "############################" << '\n';
+}
+std::cout << "Expected for n=2: "<<  (1-0.9545)*all.at(1).size()<< '\n';
+n=3;
+for (int i=0; i<4; i++)
+{
+  int divs=all.at(i).deviationModel(n);
+  std::cout<< "\nn="<< n<<" Messung" << tostr(i) << ":   " << divs << '\n';
+  std::cout << "############################" << '\n';
+}
+std::cout << "Expected for n=3: "<<  (1-0.9973)*all.at(1).size()<< '\n';
 
+
+// Ex2.b and c
  Data sum = datA+datB+datC+datD;
  for (int i=0; i<4; i++)
  {
@@ -137,5 +156,10 @@ int main() {
  }
  std::cout<<" Messung Combined"  << "  Chi²/dof:   " << sum.calcchipdof() << '\n';
 
+ for (int i=0; i<4; i++)
+ {
+   all.at(i).print("Mes"+tostr(i)+".txt");
+ }
+sum.print("MesSum.txt");
   return 0;
 }
