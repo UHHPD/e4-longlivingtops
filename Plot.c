@@ -19,6 +19,11 @@ double background(double x,double alpha=0.005,double beta=-0.00001, double gamma
 {
 	return alpha+beta*x+gamma*exp(-delta*x);
 }
+
+
+
+
+
 void Plot()
 {
 	TCanvas* c = new TCanvas("c","c",600,600);
@@ -34,7 +39,7 @@ void Plot()
 	pad->cd();
 
 	auto* mg= new TMultiGraph();
-	auto* gr = new TGraphErrors("MesA.txt", "%lg\t%lg\t%lg");
+	auto* gr = new TGraphErrors("MesSum.txt", "%lg\t%lg\t%lg");
 	gr->SetLineWidth(2);
 	gr->SetLineColor(600-3);
 	gr->SetMarkerColor(600-3);
@@ -42,7 +47,7 @@ void Plot()
 
 
 	auto* gr2 = new TGraph();
-  for (double i=0; i<300; i+=0.01) gr2->AddPoint(i, background(i));
+	for (double i=0; i<300; i+=0.01) gr2->AddPoint(i, background(i));
 	gr2->SetLineWidth(2);
 	gr2->SetLineColor(632-3);
 
@@ -53,9 +58,16 @@ void Plot()
 	mg->GetHistogram()->GetXaxis()->SetRangeUser(22, 300);
 	mg->GetHistogram()->GetXaxis()->SetTitle("mass [GeV] ");
 	mg->GetHistogram()->GetYaxis()->SetTitle("#sigma [pb]");
-	mg->GetHistogram()->SetTitle("Exp A");
+	mg->GetHistogram()->SetTitle("Exp Comb");
 
-  mg->Draw("A");
+	mg->Draw("A");
 	// gr2->Draw("AC same");
-	c->Print("PlotA.pdf");
+	c->Print("PlotG.pdf");
+
+
+// ###################################################################### Rest, übergabe klappt nicht wegen dem Constructor
+
+
+
+
 }
