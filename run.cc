@@ -155,11 +155,13 @@ std::cout << "Expected for n=3: "<<  (1-0.9973)*all.at(1).size()<< '\n';
    std::cout<<" Messung" << tostr(i) << "  Chi²/dof:   " << all.at(i).calcchipdof() << '\n';
  }
  std::cout<<" Messung Combined"  << "  Chi²/dof:   " << sum.calcchipdof() << '\n';
+ std::cout<<"The Model is well applicable on the Data, since the Chi²/dof is close to 1. The combined Data have a greater deviation from 1, since the errors are smaller, due to more statistics."<< endl;
 
  for (int i=0; i<4; i++)
  {
    all.at(i).print("Mes"+tostr(i)+".txt");
  }
 sum.print("MesSum.txt");
-  return 0;
+
+return 0;
 }
